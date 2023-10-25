@@ -9,11 +9,11 @@ public class Popup
 		JOptionPane.showMessageDialog(null, message);
 	}
 	
-	public String askQuestion(String question)
+	public String getInput(String message)
 	{
 		String response = "";
 		
-		response = JOptionPane.showInputDialog(null, question);
+		response = JOptionPane.showInputDialog(null, message);
 		
 		if (response == null)
 		{

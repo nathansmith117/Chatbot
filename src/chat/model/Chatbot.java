@@ -11,6 +11,9 @@ public class Chatbot
 	
 	public Chatbot(String username)
 	{
+		this.previousResponses = new ArrayList<String>();
+		this.userInput = new ArrayList<String>();
+		this.basicResponses = new ArrayList<String>();
 		this.username = username;
 	}
 	
@@ -18,9 +21,11 @@ public class Chatbot
 	public String processText(String input)
 	{
 		String response = "";
+		userInput.add(input);
 		
 		response = translateToPigLatin(input);
 		
+		previousResponses.add(response);
 		return response;
 	}
 	

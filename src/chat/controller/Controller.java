@@ -16,7 +16,7 @@ public class Controller
 	
 	public void start()
 	{
-		String input = popup.askQuestion(" ");
+		String input = popup.getInput("Enter stuff");
 		
 		popup.displayMessage(chatbot.processText(input));
 	}
