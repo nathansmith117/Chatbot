@@ -1,5 +1,6 @@
 package chat.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Chatbot
@@ -67,18 +68,36 @@ public class Chatbot
 		return response;
 	}
 	
-	private boolean timeDataChecker(String source)
+	private boolean timeDateChecker(String source)
 	{
-		boolean answer = false;
+		boolean isAsking = false;
 		
-		return answer;
+		boolean hasTime = source.toUpperCase().contains("TIME");
+		boolean hasDate = source.toLowerCase().contains("date");
+		boolean hasHour = source.toUpperCase().contains("HOUR");
+		boolean hasYear = source.toLowerCase().indexOf("year") >= 0;
+		boolean hasMinute = source.toLowerCase().indexOf("minute") > -1;
+		
+		if (hasTime || hasDate || hasHour || hasYear || hasMinute)
+		{
+			isAsking = true;
+		}
+		
+		return isAsking;
 	}
 	
-	private String timeResponse()
+	private String timeDateResponse()
 	{
-		String response = "";
+		String timeAndDate = "";
 		
-		return response;
+		LocalDateTime current = LocalDateTime.now();
+		
+		timeAndDate += "the current day is " + current.getDayOfWeek() + " the " + current.getDayOfMonth() + "of " + current.getMonth() + ", " + current.getYear();
+		timeAndDate += "\n";
+		timeAndDate += "it is " + current.getHour() + ":" + current.getMinute();
+		timeAndDate += "\n";
+		
+		return timeAndDate;
 	}
 	
 	private boolean isValidHTMLChecker(String source)
