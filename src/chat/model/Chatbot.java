@@ -36,18 +36,35 @@ public class Chatbot
 		return response;
 	}
 	
-	private boolean spookyChecker(String input)
+	private boolean spookyChecker(String source)
 	{
 		boolean isSpooky = false;
+		
+		ArrayList<String> spookyStuff = new ArrayList<String>();
+		spookyStuff.add("skeleton");
+		spookyStuff.add("zombie");
+		spookyStuff.add("bats");
+		spookyStuff.add("costumes");
+		spookyStuff.add("pumpkins");
+		spookyStuff.add("spiders");
+		spookyStuff.add("vampires");
+		
+		for (String current : spookyStuff)
+		{
+			if (source.toLowerCase().indexOf(current) >= 0)
+			{
+				isSpooky = true;
+			}
+		}
 		
 		return isSpooky;
 	}
 	
 	private String spookyResponse()
 	{
-		String spookyMessage = "";
+		String response = "that is too spooky!";
 		
-		return spookyMessage;
+		return response;
 	}
 	
 	private boolean timeDataChecker(String source)
