@@ -1,6 +1,7 @@
 package chat.model;
 
 import java.time.LocalDateTime;
+import java.lang.Math;
 import java.util.ArrayList;
 
 public class Chatbot
@@ -21,13 +22,87 @@ public class Chatbot
 	// I need to write this lmao
 	public String processText(String input)
 	{
-		String response = "";
-		userInput.add(input);
+		int randomChatType = (int)(Math.random() * 10);
+		randomChatType = 4;
 		
-		response = translateToPigLatin(input);
+		String output = "";
 		
-		previousResponses.add(response);
-		return response;
+		if (randomChatType == 0)
+		{
+			output = "you said " + input;
+			output += "\n";
+		}
+		else if (randomChatType == 1)
+		{
+			if (spookyChecker(input))
+			{
+				output += spookyResponse();
+				output += "\n";
+			}
+			else
+			{
+				output += "bleh";
+				output += "\n";
+			}
+		}
+		else if (randomChatType == 2)
+		{
+			if (timeDateChecker(input))
+			{
+				output += timeDateResponse() + "\n";
+			}
+			else
+			{
+				output += "idk";
+				output += "\n";
+			}
+		}
+		else if (randomChatType == 3)
+		{
+			if (isValidHTMLChecker(input))
+			{
+				output += isValidHTMLResponse() + "\n";
+			}
+			else
+			{
+				output += "idc";
+				output += "\n";
+			}
+		}
+		else if (randomChatType == 4)
+		{
+			output += "pig latin of input " + input;
+			output += "\n";
+			output += translateToPigLatin(input);
+			output += "\n";
+		}
+		else if (randomChatType == 5)
+		{
+			output += username + " " + encouragingMessage() + "\n";
+		}
+		else if (randomChatType == 6)
+		{
+			output += "\n" + input;
+			output += findSmallestWord(input);
+			output += "\n";
+		}
+		else if (randomChatType == 7)
+		{
+			output += "\n" + input;
+			output += reversePronounDirection(input);
+			output += "\n";
+		}
+		else if (randomChatType == 8)
+		{
+		}
+		else if (randomChatType == 9)
+		{
+		}
+		else
+		{
+		}
+		
+		return output;
 	}
 	
 	public String processText(String input, int start)
@@ -192,5 +267,26 @@ public class Chatbot
 		}
 		
 		return translated;
+	}
+	
+	private String findSmallestWord(String source)
+	{
+		String smallest = "";
+		
+		return smallest;
+	}
+	
+	private String reversePronounDirection(String source)
+	{
+		String pronoun = "";
+		
+		return pronoun;
+	}
+	
+	private String encouragingMessage()
+	{
+		String message = "";
+		
+		return message;
 	}
 }
