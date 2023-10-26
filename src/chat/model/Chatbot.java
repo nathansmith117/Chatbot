@@ -23,7 +23,7 @@ public class Chatbot
 	public String processText(String input)
 	{
 		int randomChatType = (int)(Math.random() * 10);
-		randomChatType = 6;
+		randomChatType = 7;
 		
 		String output = "";
 		
@@ -88,7 +88,7 @@ public class Chatbot
 		}
 		else if (randomChatType == 7)
 		{
-			output += "\n" + input;
+			output += input + "\n";
 			output += reversePronounDirection(input);
 			output += "\n";
 		}
@@ -288,6 +288,19 @@ public class Chatbot
 	private String reversePronounDirection(String source)
 	{
 		String pronoun = "";
+		
+		if (source.toLowerCase().equals("i") || source.toLowerCase().equals("me"))
+		{
+			pronoun = "you";
+		}
+		else if (source.toLowerCase().equals("you"))
+		{
+			pronoun = "i/me";
+		}
+		else
+		{
+			pronoun = "Unknown pronoun";
+		}
 		
 		return pronoun;
 	}
