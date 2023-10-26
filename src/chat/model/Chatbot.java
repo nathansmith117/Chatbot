@@ -23,7 +23,7 @@ public class Chatbot
 	public String processText(String input)
 	{
 		int randomChatType = (int)(Math.random() * 10);
-		randomChatType = 7;
+		randomChatType = 5;
 		
 		String output = "";
 		
@@ -78,7 +78,7 @@ public class Chatbot
 		}
 		else if (randomChatType == 5)
 		{
-			output += username + " " + encouragingMessage() + "\n";
+			output += "yo " + username + "\n" + encouragingMessage() + "\n";
 		}
 		else if (randomChatType == 6)
 		{
@@ -308,6 +308,12 @@ public class Chatbot
 	private String encouragingMessage()
 	{
 		String message = "";
+		
+		String[] messages = {"You got this!",
+				"Sending major good vibes your way!",
+				"Hope you’re doing awesome!"};
+		
+		message = messages[(int)(Math.random() * messages.length)];
 		
 		return message;
 	}
