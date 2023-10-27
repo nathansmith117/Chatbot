@@ -368,35 +368,57 @@ public class Chatbot
 		
 		quote = quotes[(int)(Math.random() * quotes.length)];
 		
+		if (source.toLowerCase().contains("hello"))
+		{
+			message += "Hello comrade, it's time to sieze the MEMES of prodection!\n";
+		}
 		if (source.toLowerCase().contains("capitalism"))
 		{
-			message = "Capitalist production, therefore, develops technology, and the combining together of various processes into a social whole, only by sapping the original sources of all wealth - the soil and the labourer.";
+			message += "Capitalist production, therefore, develops technology, and the combining together of various processes into a social whole, only by sapping the original sources of all wealth - the soil and the labourer.\n";
 		}
-		else if (source.toLowerCase().contains("democracy"))
+		if (source.toLowerCase().contains("socialism"))
 		{
-			message = "Democracy is the road to socialism.";
+			message += "The meaning of peace is the absence of opposition to socialism.\n";
 		}
-		else if (source.toLowerCase().contains("rich"))
+		if (source.toLowerCase().contains("communism"))
 		{
-			message = "The rich will do anything for the poor but get off their backs.";
+			message += "Let the ruling classes tremble at a Communistic revolution. The proletarians have nothing to lose but their chains.\n";
 		}
-		else if (source.toLowerCase().contains("religion"))
+		if (source.toLowerCase().contains("democracy"))
 		{
-			message = "Religion is the sigh of the oppressed creature, the heart of a heartless world, and the soul of soulless conditions. It is the opium of the people.";
+			message += "Democracy is the road to socialism.\n";
 		}
-		else if (source.toLowerCase().contains("property"))
+		if (source.toLowerCase().contains("rich"))
 		{
-			message = "The theory of Communism may be summed up in one sentence: Abolish all private property.";
+			message += "The rich will do anything for the poor but get off their backs.\n";
 		}
-		else if (source.toLowerCase().contains("reason"))
+		if (source.toLowerCase().contains("religion"))
 		{
-			message = "Reason has always existed, but not always in a reasonable form.";
+			message += "Religion is the sigh of the oppressed creature, the heart of a heartless world, and the soul of soulless conditions. It is the opium of the people.\n";
 		}
-		else if (source.toLowerCase().contains("bourgeois"))
+		if (source.toLowerCase().contains("property"))
 		{
-			message = "In bourgeois society capital is independent and has individuality, while the living person is dependent and has no individuality.";
+			message += "The theory of Communism may be summed up in one sentence: Abolish all private property.\n";
 		}
-		else
+		if (source.toLowerCase().contains("reason"))
+		{
+			message += "Reason has always existed, but not always in a reasonable form.\n";
+		}
+		if (source.toLowerCase().contains("bourgeois"))
+		{
+			message += "In bourgeois society capital is independent and has individuality, while the living person is dependent and has no individuality.\n";
+		}
+		// The funniest one of them all lmao
+		if (source.toLowerCase().contains("who is your suger daddy"))
+		{
+			message += "Comrade Friedrich Engels\n";
+		}
+		if (source.toLowerCase().contains("lenin"))
+		{
+			message += "A communists favorite drink is leninmade\n";
+		}
+		
+		if (message.equals(""))
 		{
 			message = quote;
 		}
