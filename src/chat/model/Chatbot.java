@@ -23,7 +23,7 @@ public class Chatbot
 	public String processText(String input)
 	{
 		int randomChatType = (int)(Math.random() * 10);
-		randomChatType = 4;
+		randomChatType = 8;
 		
 		String output = "";
 		
@@ -94,6 +94,7 @@ public class Chatbot
 		}
 		else if (randomChatType == 8)
 		{
+			output += getInsultingJoke() + "\n";
 		}
 		else if (randomChatType == 9)
 		{
@@ -314,12 +315,38 @@ public class Chatbot
 	{
 		String message = "";
 		
-		String[] messages = {"You got this!",
-				"Sending major good vibes your way!",
-				"Hope you’re doing awesome!"};
+		String[] messages = {
+			"You got this!",
+			"Sending major good vibes your way!",
+			"Hope you’re doing awesome!"
+		};
 		
 		message = messages[(int)(Math.random() * messages.length)];
 		
 		return message;
+	}
+	
+	private String getInsultingJoke()
+	{
+		String joke = "";
+		
+		String[] jokes = {
+			"You are the human equivalent of a participation trophy",
+			"Can I have the name of your hair salon? I need to know where not to go",
+			"I smell something burning. Are you trying to think again?",
+			"You'll go far someday. And I hope you stay there",
+			"Your gene pool needs more chlorine",
+			"Imagine how many crises would have been averted if your parents bothered to use a condom",
+			"If I gave you a penny for your thoughts, I'd get change back",
+			"You're why shampoo bottles have instructions",
+			"You're so ugly you'd make a Happy Meal cry",
+			"Yo mama so fat she uses Google Earth to take a selfie",
+			"Yo mama so fat she wears a sock on each toe",
+			"Yo mama so stupid she got locked in a mattress store and slept on the floor"
+		};
+		
+		joke = jokes[(int)(Math.random() * jokes.length)];
+		
+		return joke;
 	}
 }
