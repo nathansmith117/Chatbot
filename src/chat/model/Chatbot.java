@@ -23,7 +23,7 @@ public class Chatbot
 	public String processText(String input)
 	{
 		int randomChatType = (int)(Math.random() * 10);
-		randomChatType = 5;
+		randomChatType = 4;
 		
 		String output = "";
 		
@@ -248,6 +248,11 @@ public class Chatbot
 					&& (indexI == -1 || indexU < indexI))
 			{
 				firstVowel = indexU;
+			}
+			
+			if (firstVowel > firstSpace)
+			{
+				firstVowel = 0;
 			}
 			
 			String firstPart = source.substring(0, firstVowel);
