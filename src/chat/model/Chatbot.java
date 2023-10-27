@@ -23,7 +23,7 @@ public class Chatbot
 	public String processText(String input)
 	{
 		int randomChatType = (int)(Math.random() * 10);
-		randomChatType = 8;
+		randomChatType = 9;
 		
 		String output = "";
 		
@@ -98,6 +98,7 @@ public class Chatbot
 		}
 		else if (randomChatType == 9)
 		{
+			output += talkToKarlMarx(input) + "\n";
 		}
 		else
 		{
@@ -348,5 +349,58 @@ public class Chatbot
 		joke = jokes[(int)(Math.random() * jokes.length)];
 		
 		return joke;
+	}
+	
+	// This should count as the philosophy opinion (:
+	private String talkToKarlMarx(String source)
+	{
+		String message = "";
+		String quote = "";
+		
+		String[] quotes = {
+				"We should not say that one man's hour is worth another man's hour, but rather that one man during an hour is worth just as much as another man during an hour. Time is everything, man is nothing: he is at the most time's carcass.",
+				"Workers of the world unite; you have nothing to lose but your chains!",
+				"Society does not consist of individuals but expresses the sum of interrelations, the relations within which these individuals stand.",
+				"Art is always and everywhere the secret confession, and at the same time the immortal movement of its time.",
+				"From each according to his abilities, to each according to his needs.",
+				"Catch a man a fish, and you can sell it to him. Teach a man to fish, and you ruin a wonderful business opportunity.",
+		};
+		
+		quote = quotes[(int)(Math.random() * quotes.length)];
+		
+		if (source.toLowerCase().contains("capitalism"))
+		{
+			message = "Capitalist production, therefore, develops technology, and the combining together of various processes into a social whole, only by sapping the original sources of all wealth - the soil and the labourer.";
+		}
+		else if (source.toLowerCase().contains("democracy"))
+		{
+			message = "Democracy is the road to socialism.";
+		}
+		else if (source.toLowerCase().contains("rich"))
+		{
+			message = "The rich will do anything for the poor but get off their backs.";
+		}
+		else if (source.toLowerCase().contains("religion"))
+		{
+			message = "Religion is the sigh of the oppressed creature, the heart of a heartless world, and the soul of soulless conditions. It is the opium of the people.";
+		}
+		else if (source.toLowerCase().contains("property"))
+		{
+			message = "The theory of Communism may be summed up in one sentence: Abolish all private property.";
+		}
+		else if (source.toLowerCase().contains("reason"))
+		{
+			message = "Reason has always existed, but not always in a reasonable form.";
+		}
+		else if (source.toLowerCase().contains("bourgeois"))
+		{
+			message = "In bourgeois society capital is independent and has individuality, while the living person is dependent and has no individuality.";
+		}
+		else
+		{
+			message = quote;
+		}
+		
+		return message;
 	}
 }
