@@ -22,8 +22,8 @@ public class Chatbot
 	// I need to write this lmao
 	public String processText(String input)
 	{
-		int randomChatType = (int)(Math.random() * 10);
-		randomChatType = 9;
+		int randomChatType = (int)(Math.random() * 11);
+		randomChatType = 11;
 		
 		String output = "";
 		
@@ -94,24 +94,36 @@ public class Chatbot
 		}
 		else if (randomChatType == 8)
 		{
-			output += getInsultingJoke() + "\n";
+			output += tellGroanJoke() + "\n";
 		}
 		else if (randomChatType == 9)
 		{
 			output += talkToKarlMarx(input) + "\n";
 		}
-		else
+		else if (randomChatType == 10)
 		{
+			if (computerScienceChecker(input))
+			{
+				output += computerScienceResponse() + "\n";
+			}
+			else
+			{
+				output += "No computer science found ):\n";
+			}
+		}
+		else if (randomChatType == 11)
+		{
+			if (holidayChecker(input))
+			{
+				output += holidayResponse() + "\n";
+			}
+			else
+			{
+				output += "No holiday found ): Quite a boring time of the year." + "\n";
+			}
 		}
 		
 		return output;
-	}
-	
-	public String processText(String input, int start)
-	{
-		String response = "";
-		
-		return response;
 	}
 	
 	private boolean spookyChecker(String source)
@@ -327,7 +339,7 @@ public class Chatbot
 		return message;
 	}
 	
-	private String getInsultingJoke()
+	private String tellGroanJoke()
 	{
 		String joke = "";
 		
@@ -349,6 +361,70 @@ public class Chatbot
 		joke = jokes[(int)(Math.random() * jokes.length)];
 		
 		return joke;
+	}
+	
+	private boolean computerScienceChecker(String source)
+	{
+		boolean isComputerScience = false;
+		
+		ArrayList<String> computerScienceStuff = new ArrayList<String>();
+		computerScienceStuff.add("computer");
+		computerScienceStuff.add("programming");
+		computerScienceStuff.add("debug");
+		computerScienceStuff.add("linux");
+		computerScienceStuff.add("app");
+		computerScienceStuff.add("compile");
+		
+		for (String current : computerScienceStuff)
+		{
+			if (source.toLowerCase().contains(current))
+			{
+				isComputerScience = true;
+			}
+		}
+		
+		return isComputerScience;
+	}
+	
+	private String computerScienceResponse()
+	{
+		String response = "Is computer science stuff (:";
+		
+		return response;
+	}
+	
+	private boolean holidayChecker(String source)
+	{
+		boolean isHoliday = false;
+		
+		ArrayList<String> holidays = new ArrayList<String>();
+		holidays.add("christmas"); // Be a good consumer and buy stuff you don't need with money you don't have
+		holidays.add("new years"); // A good time to get frozen in ice for 2000 years
+		holidays.add("easter"); // Worship a bunny that lays eggs 
+		holidays.add("independence day"); // The day we escaped the smelly tea drinking brits (:
+		holidays.add("halloween"); // GIVE ME CANDY!!!
+		holidays.add("thanksgiving"); // You better go on a diet afterwards
+		holidays.add("saint joseph's day"); // A quite big holiday in my family. LOTS OF YUMMY FOOD!!!
+		holidays.add("presidents day"); // Learn about the grandma's on the dollar bills.
+		holidays.add("saint patrick's day"); // You better be wearing green that day.
+		holidays.add("labor day"); // A holiday I pretty much didn't know even existed entail I read some old books lol
+		
+		for (String current : holidays)
+		{
+			if (source.toLowerCase().contains(current))
+			{
+				isHoliday = true;
+			}
+		}
+		
+		return isHoliday;
+	}
+	
+	private String holidayResponse()
+	{
+		String response = "Fun times indeed (:";
+		
+		return response;
 	}
 	
 	// This should count as the philosophy opinion (:
