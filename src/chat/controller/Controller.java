@@ -16,8 +16,12 @@ public class Controller
 	
 	public void start()
 	{
-		String input = popup.getInput("Enter stuff");
-		
+		interactWithChatbot();
+	}
+	
+	private void interactWithChatbot()
+	{
+		String input = popup.askQuestion("Enter stuff");
 		popup.displayMessage(chatbot.processText(input));
 	}
 }
