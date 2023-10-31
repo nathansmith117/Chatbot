@@ -297,7 +297,7 @@ public class Chatbot
 		String [] words = source.trim().split(" ");
 		
 		for (int index = words.length - 1; index >= 0; index--)
-		{
+		{ 
 			String current = words[index];
 			
 			if (current.length() < length)
