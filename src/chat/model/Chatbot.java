@@ -23,7 +23,7 @@ public class Chatbot
 	public String processText(String input)
 	{
 		int randomChatType = (int)(Math.random() * 11);
-		randomChatType = 11;
+		randomChatType = 6;
 		
 		String output = "";
 		
@@ -290,14 +290,20 @@ public class Chatbot
 	
 	private String findSmallestWord(String source)
 	{
-		String[] words = source.split(" ");
-		String smallest = words[0];
+		String smallest = "";
 		
-		for (String word : words)
+		int length = Integer.MAX_VALUE;
+		
+		String [] words = source.trim().split(" ");
+		
+		for (int index = words.length - 1; index >= 0; index--)
 		{
-			if (word.length() < smallest.length())
+			String current = words[index];
+			
+			if (current.length() < length)
 			{
-				smallest = word;
+				length = current.length();
+				smallest = current;
 			}
 		}
 		
