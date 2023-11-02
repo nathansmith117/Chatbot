@@ -23,7 +23,7 @@ public class Chatbot
 	public String processText(String input)
 	{
 		int randomChatType = (int)(Math.random() * 11);
-		randomChatType = 6;
+		//randomChatType = 1;
 		
 		String output = "";
 		
@@ -130,14 +130,15 @@ public class Chatbot
 	{
 		boolean isSpooky = false;
 		
-		ArrayList<String> spookyStuff = new ArrayList<String>();
-		spookyStuff.add("skeleton");
-		spookyStuff.add("zombie");
-		spookyStuff.add("bats");
-		spookyStuff.add("costumes");
-		spookyStuff.add("pumpkins");
-		spookyStuff.add("spiders");
-		spookyStuff.add("vampires");
+		String[] spookyStuff = {
+			"skeleton",
+			"zombie",
+			"bats",
+			"costumes",
+			"pumpkins",
+			"spiders",
+			"vampires"
+		};
 		
 		for (String current : spookyStuff)
 		{
@@ -373,13 +374,14 @@ public class Chatbot
 	{
 		boolean isComputerScience = false;
 		
-		ArrayList<String> computerScienceStuff = new ArrayList<String>();
-		computerScienceStuff.add("computer");
-		computerScienceStuff.add("programming");
-		computerScienceStuff.add("debug");
-		computerScienceStuff.add("linux");
-		computerScienceStuff.add("app");
-		computerScienceStuff.add("compile");
+		String[] computerScienceStuff = {
+			"computer",
+			"programming",
+			"debug",
+			"linux",
+			"app",
+			"compile"
+		};
 		
 		for (String current : computerScienceStuff)
 		{
@@ -403,17 +405,18 @@ public class Chatbot
 	{
 		boolean isHoliday = false;
 		
-		ArrayList<String> holidays = new ArrayList<String>();
-		holidays.add("christmas"); // Be a good consumer and buy stuff you don't need with money you don't have
-		holidays.add("new years"); // A good time to get frozen in ice for 2000 years
-		holidays.add("easter"); // Worship a bunny that lays eggs 
-		holidays.add("independence day"); // The day we escaped the smelly tea drinking brits (:
-		holidays.add("halloween"); // GIVE ME CANDY!!!
-		holidays.add("thanksgiving"); // You better go on a diet afterwards
-		holidays.add("saint joseph's day"); // A quite big holiday in my family. LOTS OF YUMMY FOOD!!!
-		holidays.add("presidents day"); // Learn about the grandma's on the dollar bills.
-		holidays.add("saint patrick's day"); // You better be wearing green that day.
-		holidays.add("labor day"); // A holiday I pretty much didn't know even existed entail I read some old books lol
+		String[] holidays = {
+			"christmas", // Be a good consumer and buy stuff you don't need with money you don't have
+			"new years", // A good time to get frozen in ice for 2000 years
+			"easter", // Worship a bunny that lays eggs 
+			"independence day", // The day we escaped the smelly tea drinking brits (:
+			"halloween", // GIVE ME CANDY!!!
+			"thanksgiving", // You better go on a diet afterwards
+			"saint joseph's day", // A quite big holiday in my family. LOTS OF YUMMY FOOD!!!
+			"presidents day", // Learn about the grandma's on the dollar bills.
+			"saint patrick's day", // You better be wearing green that day.
+			"labor day" // A holiday I pretty much didn't know even existed entail I read some old books lol
+		};
 		
 		for (String current : holidays)
 		{

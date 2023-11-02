@@ -16,12 +16,26 @@ public class Controller
 	
 	public void start()
 	{
-		interactWithChatbot();
+		while (true)
+		{
+			if (interactWithChatbot())
+			{
+				break;
+			}
+		}
 	}
 	
-	private void interactWithChatbot()
+	// Return true if should quit
+	private boolean interactWithChatbot()
 	{
 		String input = popup.askQuestion("Enter stuff");
+		
+		if (input.equals(""))
+		{
+			return true;
+		}
+		
 		popup.displayMessage(chatbot.processText(input));
+		return false;
 	}
 }
