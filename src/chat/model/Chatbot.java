@@ -20,7 +20,7 @@ public class Chatbot
 	}
 	
 	// The number ranges from 0.0 to 1.0
-	public double generateNumberFromString(String source)
+	private double generateNumberFromString(String source)
 	{
 		int hash = 0;
 		int maxValue = 1;
