@@ -19,35 +19,6 @@ public class Chatbot
 		this.username = username;
 	}
 	
-	// The number ranges from 0.0 to 1.0
-	private double generateNumberFromString(String source)
-	{
-		int hash = 0;
-		int maxValue = 1;
-		double output = 0.0;
-		
-		for (int index = 0; index < source.length(); index++)
-		{
-			int currentValue = (int)(source.charAt(index));
-			hash ^= currentValue;
-			
-			if (currentValue > maxValue)
-			{
-				maxValue = currentValue;
-			}
-		}
-		
-		output = (double)hash / maxValue;
-		
-		// Stop output from going over one.
-		if (output > 1.0)
-		{
-			output = output % 1.0;
-		}
-		
-		return output;
-	}
-	
 	// I need to write this lmao
 	public String processText(String input)
 	{
@@ -56,7 +27,8 @@ public class Chatbot
 		
 		String output = "";
 		
-		output += randomChatType + "\n";
+		// Testing the chat type.
+		//output += randomChatType + "\n";
 		
 		if (randomChatType == 0)
 		{
@@ -152,6 +124,34 @@ public class Chatbot
 			{
 				output += "No holiday found ): Quite a boring time of the year." + "\n";
 			}
+		}
+		
+		return output;
+	}
+	
+	// The number ranges from 0.0 to 1.0
+	private double generateNumberFromString(String source)
+	{
+		int hash = 0;
+		int maxValue = 1;
+		
+		for (int index = 0; index < source.length(); index++)
+		{
+			int currentValue = (int)(source.charAt(index));
+			hash ^= currentValue;
+			
+			if (currentValue > maxValue)
+			{
+				maxValue = currentValue;
+			}
+		}
+		
+		double output = (double)hash / maxValue;
+		
+		// Stop output from going over one.
+		if (output > 1.0)
+		{
+			output = output % 1.0;
 		}
 		
 		return output;
