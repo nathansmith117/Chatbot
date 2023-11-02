@@ -19,17 +19,48 @@ public class Chatbot
 		this.username = username;
 	}
 	
+	// The number ranges from 0.0 to 1.0
+	public double generateNumberFromString(String source)
+	{
+		int hash = 0;
+		int maxValue = 1;
+		double output = 0.0;
+		
+		for (int index = 0; index < source.length(); index++)
+		{
+			int currentValue = (int)(source.charAt(index));
+			hash ^= currentValue;
+			
+			if (currentValue > maxValue)
+			{
+				maxValue = currentValue;
+			}
+		}
+		
+		output = (double)hash / maxValue;
+		
+		// Stop output from going over one.
+		if (output > 1.0)
+		{
+			output = output % 1.0;
+		}
+		
+		return output;
+	}
+	
 	// I need to write this lmao
 	public String processText(String input)
 	{
-		int randomChatType = (int)(Math.random() * 11);
+		int randomChatType = (int)(generateNumberFromString(input) * 11);
 		//randomChatType = 1;
 		
 		String output = "";
 		
+		output += randomChatType + "\n";
+		
 		if (randomChatType == 0)
 		{
-			output = "you said " + input;
+			output += "you said " + input;
 			output += "\n";
 		}
 		else if (randomChatType == 1)
