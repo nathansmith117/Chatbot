@@ -23,7 +23,7 @@ public class Chatbot
 	public String processText(String input)
 	{
 		int randomChatType = (int)(generateNumberFromString(input) * 11);
-		//randomChatType = 1;
+		randomChatType = 7;
 		
 		String output = "";
 		
@@ -68,7 +68,7 @@ public class Chatbot
 			}
 			else
 			{
-				output += "idc";
+				output += "not html";
 				output += "\n";
 			}
 		}
@@ -223,14 +223,47 @@ public class Chatbot
 	
 	private boolean isValidHTMLChecker(String source)
 	{
-		boolean answer = false;
+		boolean isValid = false;
 		
-		return answer;
+		if (source.contains("<") && source.contains(">"))
+		{
+			int startOpenTag = source.indexOf("<");
+			int startCloseTag = source.indexOf(">");
+			
+			if (startOpenTag < startCloseTag)
+			{
+				int endText = source.indexOf(" ", startOpenTag);
+				
+				if (endText == -1 || endText > startCloseTag)
+				{
+					endText = startCloseTag;
+				}
+				
+				String tag = source.substring(startOpenTag + 1, endText);
+				
+				if (tag.length() > 0)
+				{
+					int endOpenTag = source.indexOf("</", startCloseTag);
+					int endCloseTag = source.indexOf(">", endOpenTag);
+					
+					if (endOpenTag > -1 && endCloseTag > -1)
+					{
+						String closeTag = source.substring(endOpenTag + 1, endCloseTag);
+						
+						if (tag.equalsIgnoreCase(closeTag)) {
+							isValid = true;
+						}
+					}
+				}
+			}
+		}
+		
+		return isValid;
 	}
 	
 	private String isValidHTMLResponse()
 	{
-		String response = "";
+		String response = "HTML indeed";
 		
 		return response;
 	}
@@ -344,22 +377,14 @@ public class Chatbot
 	
 	private String reversePronounDirection(String source)
 	{
-		String pronoun = "";
+		String output = "";
 		
-		if (source.toLowerCase().equals("i") || source.toLowerCase().equals("me"))
-		{
-			pronoun = "you";
-		}
-		else if (source.toLowerCase().equals("you"))
-		{
-			pronoun = "i/me";
-		}
-		else
-		{
-			pronoun = "Unknown pronoun";
-		}
+		output = source.replace("I ", "You ");
+		output = output.toUpperCase().replace(" ME ", " YOU ");
+		output = output.replace("you", "me");
+		output = output.replace(" am ", " are ");
 		
-		return pronoun;
+		return output;
 	}
 	
 	private String encouragingMessage()
