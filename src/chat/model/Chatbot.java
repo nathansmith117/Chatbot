@@ -6,17 +6,16 @@ import java.util.ArrayList;
 
 public class Chatbot
 {
-	private ArrayList<String> previousResponses;
-	private ArrayList<String> userInput;
-	private ArrayList<String> basicResponses;
 	private String username;
+	
+	private ArrayList<String> userInput;
+	private ArrayList<String> chatbotResponses;
 	
 	public Chatbot(String username)
 	{
-		this.previousResponses = new ArrayList<String>();
-		this.userInput = new ArrayList<String>();
-		this.basicResponses = new ArrayList<String>();
 		this.username = username;
+		this.userInput = new ArrayList<String>();
+		this.chatbotResponses = new ArrayList<String>();
 	}
 	
 	public void setUsername(String username)
@@ -27,6 +26,8 @@ public class Chatbot
 	// I need to write this lmao
 	public String processText(String input)
 	{
+		userInput.add(input);
+		
 		int randomChatType = (int)(generateNumberFromString(input) * 11);
 		//randomChatType = 7;
 		
@@ -131,6 +132,7 @@ public class Chatbot
 			}
 		}
 		
+		chatbotResponses.add(output);
 		return output;
 	}
 	
@@ -575,5 +577,25 @@ public class Chatbot
 	public String toString()
 	{
 		return "A chatbot with the username of " + username;
+	}
+	
+	public ArrayList<String> getUserInput()
+	{
+		return this.userInput;
+	}
+	
+	public ArrayList<String> getChatbotResponses()
+	{
+		return this.chatbotResponses;
+	}
+	
+	public void setUserInput(ArrayList<String> userInput)
+	{
+		this.userInput = userInput;
+	}
+	
+	public void setChatbotResponses(ArrayList<String> chatbotResponses)
+	{
+		this.chatbotResponses = chatbotResponses;
 	}
 }
