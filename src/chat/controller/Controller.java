@@ -6,36 +6,30 @@ import chat.view.Popup;
 public class Controller
 {
 	private Chatbot chatbot;
-	private Popup popup;
+	private Popup view;
 	
 	public Controller()
 	{
-		this.chatbot = new Chatbot("nathan");
-		this.popup = new Popup();
+		this.chatbot = new Chatbot("ur mom");
+		this.view = new Popup();
 	}
 	
 	public void start()
 	{
-		while (true)
+		String response = view.askQuestion("What is your name?");
+		chatbot.setUsername(response);
+		
+		while (!response.equals("quit"))
 		{
-			if (interactWithChatbot())
-			{
-				break;
-			}
+			response = interactWithChatbot(response);
+			response = view.askQuestion(response);
 		}
 	}
 	
-	// Return true if should quit
-	private boolean interactWithChatbot()
+	private String interactWithChatbot(String input)
 	{
-		String input = popup.askQuestion("Enter stuff");
+		String response = chatbot.processText(input);
 		
-		if (input.equals(""))
-		{
-			return true;
-		}
-		
-		popup.displayMessage(chatbot.processText(input));
-		return false;
+		return response;
 	}
 }

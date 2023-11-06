@@ -1,13 +1,9 @@
 package chat.tests;
 
-
-
 /**
  * Project imports
  */
-
 import chat.controller.Runner;
-
 /**
  * Reflection imports
  */
@@ -16,24 +12,27 @@ import java.lang.reflect.*;
 /**
  * Testing imports
  */
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 class RunnerTest
 {
+
 	private Runner testedRunner;
-	
+
 	@BeforeEach
-	void setUp() throws Exception
+	public void setUp() throws Exception
 	{
 		testedRunner = new Runner();
 	}
 
 	@AfterEach
-	void tearDown() throws Exception
+	public void tearDown() throws Exception
 	{
 		testedRunner = null;
 	}
@@ -42,7 +41,7 @@ class RunnerTest
 	public void testMain()
 	{
 		Method[] runnerMethods = testedRunner.getClass().getDeclaredMethods();
-		assertTrue(runnerMethods.length == 1, "There should only be one method in your Runner class");
+		assertTrue(runnerMethods.length == 1, "There should be three methods in your Runner class");
 		
 		int returnType = runnerMethods[0].getModifiers();
 		assertTrue(Modifier.isPublic(returnType), "The method must be public");

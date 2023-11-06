@@ -19,11 +19,16 @@ public class Chatbot
 		this.username = username;
 	}
 	
+	public void setUsername(String username)
+	{
+		this.username = username;
+	}
+	
 	// I need to write this lmao
 	public String processText(String input)
 	{
 		int randomChatType = (int)(generateNumberFromString(input) * 11);
-		randomChatType = 7;
+		//randomChatType = 7;
 		
 		String output = "";
 		
@@ -97,7 +102,7 @@ public class Chatbot
 		}
 		else if (randomChatType == 8)
 		{
-			output += tellGroanJoke() + "\n";
+			output += tellInsultingJoke() + "\n";
 		}
 		else if (randomChatType == 9)
 		{
@@ -402,7 +407,7 @@ public class Chatbot
 		return message;
 	}
 	
-	private String tellGroanJoke()
+	private String tellInsultingJoke()
 	{
 		String joke = "";
 		
@@ -565,5 +570,10 @@ public class Chatbot
 		}
 		
 		return message;
+	}
+	
+	public String toString()
+	{
+		return "A chatbot with the username of " + username;
 	}
 }

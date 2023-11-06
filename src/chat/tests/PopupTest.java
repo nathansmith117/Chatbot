@@ -3,14 +3,12 @@ package chat.tests;
 /**
  * Project imports
  */
-
 import chat.view.Popup;
 
 /**
  * Reflection imports
  */
 import java.lang.reflect.*;
-
 /**
  * Testing imports
  */
@@ -25,52 +23,52 @@ class PopupTest
 	private Popup testedPopup;
 
 	@BeforeEach
-	void setUp() throws Exception
+	public void setUp() throws Exception
 	{
-		testedPopup = new Popup();
+		this.testedPopup = new Popup();
 	}
 
 	@AfterEach
-	void tearDown() throws Exception
+	public void tearDown() throws Exception
 	{
-		testedPopup = null;
+		this.testedPopup = null;
 	}
 
 	@Test
-	void testPopupStructure()
+	public void testStructure()
 	{
 		Method [] methods = testedPopup.getClass().getDeclaredMethods();
-		assertTrue(methods.length == 2, "You need to have two methods");
-		
-		int expectedPublicCount = 2;
-		int totalPublic = 0;
-		int requiredMethodCount = 2;
-		int actualMethodCount = 0;
-		
-		for (Method currentMethod : methods)
+		assertTrue(methods.length == 2, "You should have two methods in your popup class");
+		int voidCount = 0;
+		int stringCount = 0;
+		for (Method method : methods)
 		{
-			if (Modifier.isPublic(currentMethod.getModifiers()))
+			if (method.getReturnType().equals(String.class))
 			{
-				totalPublic++;
+				stringCount++;
+				if (method.getParameterCount() == 1)
+				{
+					Type[] types = methods[0].getGenericParameterTypes();
+					assertTrue(types[0].getTypeName().equals("java.lang.String"), "The parameter type needs to be: String");
+				}
+				assertTrue(method.getName().equals("askQuestion"), "This method should be named askQuestion");
 			}
-			if (currentMethod.getName().equals("askQuestion"))
+			else if (method.getReturnType().getName().equals("void"))
 			{
-				actualMethodCount++;
-				assertTrue(currentMethod.getReturnType().equals(String.class), "This must be a String method");
-				assertTrue(currentMethod.getParameterCount() == 1, "This must have a single String parameter");
-				assertTrue(currentMethod.getGenericParameterTypes()[0].getTypeName().equals("java.lang.String"), "This must have a single String parameter");
+				voidCount++;
+				if (method.getParameterCount() == 1 && method.getParameters()[0].equals(String.class))
+				{
+					if (method.getParameterCount() == 1)
+					{
+						Type[] types = methods[0].getGenericParameterTypes();
+						assertTrue(types[0].getTypeName().equals("java.lang.String"), "The parameter type needs to be: String");
+					}
+				}
+				assertTrue(method.getName().equals("displayMessage"), "This method should be named displayMessage");
 			}
-			else if (currentMethod.getName().equals("displayMessage"))
-			{
-				actualMethodCount++;
-				assertTrue(currentMethod.getReturnType().equals(Void.TYPE), "This must be a void method");
-				assertTrue(currentMethod.getParameterCount() == 1, "This must have a single String parameter");
-				assertTrue(currentMethod.getGenericParameterTypes()[0].getTypeName().equals("java.lang.String"), "This must have a single String parameter");
-			}
-			
 		}
-		assertTrue(totalPublic == expectedPublicCount, "You need 2 public methods");
-		assertTrue(actualMethodCount == requiredMethodCount, "You need to have askQuestion and displayMessage methods");
+		assertTrue(voidCount == 1, "You should have exactly 1 void method");
+		assertTrue(stringCount == 1, "You should have exactly 1 String method");
 	}
 
 }

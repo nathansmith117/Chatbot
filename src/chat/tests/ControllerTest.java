@@ -3,7 +3,6 @@ package chat.tests;
 /**
  * Project imports
  */
-
 import chat.controller.Controller;
 
 /**
@@ -14,6 +13,7 @@ import java.lang.reflect.*;
 /**
  * Testing imports
  */
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
@@ -23,65 +23,105 @@ import org.junit.jupiter.api.Test;
 class ControllerTest
 {
 	private Controller testedController;
+
 	@BeforeEach
 	void setUp() throws Exception
 	{
-		testedController = new Controller();
+		this.testedController = new Controller();
 	}
 
 	@AfterEach
 	void tearDown() throws Exception
 	{
-		testedController = null;
+		this.testedController = null;
 	}
 
 	@Test
-	void testControllerStructure()
+	void testDataMembers()
 	{
-		assertTrue(testedController.getClass().getDeclaredConstructors().length == 1, "You need a zero parameter constructor!");
+		Field [] fields = testedController.getClass().getDeclaredFields();
+		assertTrue(fields.length >= 2, "You need at least 2 data members in your Controller");
+		boolean hasPopup = false;
+		boolean hasChatbot = false;
+
+		for (Field field : fields)
+		{
+
+			String name = field.getType().getSimpleName();
+			if (name.equals("Popup"))
+			{
+				hasPopup = true;
+			}
+			else if (name.equals("Chatbot"))
+			{
+				hasChatbot = true;
+			}	
+		}
+		assertTrue(hasPopup, "You need a Popup as a data member");
+		assertTrue(hasChatbot, "You need a Chatbot as a data member");
+	}
+
+	@Test
+	void testMethods()
+	{
 		Method [] methods = testedController.getClass().getDeclaredMethods();
-		assertTrue(methods.length >= 2, "You need to have at least two methods in your Controller class");
+		assertTrue(methods.length >= 6, "You need at least six methods in the controller");
+		boolean hasStart = false;
+		int interactCount = 0;
+		boolean hasInteract = false;
+		boolean hasHandle = false;
+		boolean hasSave = false;
+		boolean hasLoad = false;
+		boolean hasQuit = false;
 		
-		int expectedPublicCount = 1;
-		int expectedPrivateCount = 1;
-		int totalPublic = 0;
-		int totalPrivate = 0;
-		
-		for (Method currentMethod : methods)
+		for (Method method : methods)
 		{
-			if(Modifier.isPrivate(currentMethod.getModifiers()))
+			Type[] types = method.getGenericParameterTypes();
+			if (method.getName().equals("handleError"))
 			{
-				totalPrivate++;
+				hasHandle = true;
+
+				assertTrue(types[0].getTypeName().equals("java.lang.Exception"), "The parameter type needs to be: Exception");
 			}
-			else if (Modifier.isPublic(currentMethod.getModifiers()))
+			else if (method.getName().equals("start"))
 			{
-				totalPublic++;
-			}	
-		}
-		
-		assertTrue(totalPublic == expectedPublicCount, "You need only 1 public method: start");
-		assertTrue(totalPrivate >= expectedPrivateCount, "You need 1 or more private methods: interactWithChatbot");
-		
-		Field [] dataMembers = testedController.getClass().getDeclaredFields();
-		assertTrue(dataMembers.length > 1, "You need at least 2 data members in the Controller!");
-		
-		String [] required = {"Chatbot","Popup"};
-		int requiredDataMembers = 0;
-		
-		for (Field currentField : dataMembers)
-		{
-			String name = currentField.getType().getSimpleName();
-			if (name.equals(required[0]))
-			{
-				requiredDataMembers += 5;
+				hasStart = true;
+				assertTrue(types.length == 0, "Start has no parameters!");
+				
 			}
-			else if (name.equals(required[1]))
+			else if (method.getName().equals("save"))
 			{
-				requiredDataMembers += 6;
-			}	
+				hasSave = true;
+				assertTrue(types.length == 0, "Save has no parameters!");
+				
+			}
+			else if (method.getName().equals("load"))
+			{
+				hasLoad = true;
+				assertTrue(types.length == 0, "Load has no parameters!");
+			
+			}
+			else if (method.getName().equals("quit"))
+			{
+				hasLoad = true;
+				assertTrue(types.length == 0, "Load has no parameters!");
+
+			}
+			else if (method.getName().equals("interactWithChatbot"))
+			{
+				hasInteract = true;
+				assertTrue(types[0].getTypeName().equals("java.lang.String"), "The first parameter type needs to be: String");
+				interactCount++;
+			}
 		}
-		assertTrue(requiredDataMembers == 11, "You need a Chatbot and a Popup data member in the Controller!");
-		
+
+		assertTrue(hasHandle, "You need a method named handleError");
+		assertTrue(hasInteract, "You need a method named interactWithChatbot");
+		assertTrue(interactCount == 2, "You need two methods named interactWithChatbot");
+		assertTrue(hasStart, "You need a method named start");
+		assertTrue(hasSave, "You need a method named save");
+		assertTrue(hasLoad, "You need a method named load");
+		assertTrue(hasQuit, "You need a method named quit");
 	}
 
 }
