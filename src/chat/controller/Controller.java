@@ -2,6 +2,7 @@ package chat.controller;
 
 import chat.model.Chatbot;
 import chat.view.Popup;
+import java.util.ArrayList;
 
 public class Controller
 {
@@ -25,6 +26,7 @@ public class Controller
 			response = view.askQuestion(response);
 		}
 		
+		save();
 		quit();
 	}
 	
@@ -49,7 +51,11 @@ public class Controller
 	
 	public void save()
 	{
+		ArrayList<String> text = chatbot.getUserInput();
+		IOController.saveTextToFile(text, "user", this);
 		
+		text = chatbot.getChatbotResponses();
+		IOController.saveTextToFile(text, "chatbot", this);
 	}
 	
 	public void load()
