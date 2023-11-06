@@ -24,6 +24,8 @@ public class Controller
 			response = interactWithChatbot(response);
 			response = view.askQuestion(response);
 		}
+		
+		quit();
 	}
 	
 	private String interactWithChatbot(String input)
@@ -31,5 +33,32 @@ public class Controller
 		String response = chatbot.processText(input);
 		
 		return response;
+	}
+	
+	public String interactWithChatbot(String input, int choice)
+	{
+		String response = "";
+		
+		return response;
+	}
+	
+	public void quit()
+	{
+		System.exit(0);
+	}
+	
+	public void save()
+	{
+		
+	}
+	
+	public void load()
+	{
+		
+	}
+	
+	public void handleError(Exception error)
+	{
+		view.displayMessage(error.getMessage());
 	}
 }

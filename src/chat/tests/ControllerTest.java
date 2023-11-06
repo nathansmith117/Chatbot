@@ -103,7 +103,7 @@ class ControllerTest
 			}
 			else if (method.getName().equals("quit"))
 			{
-				hasLoad = true;
+				hasQuit = true;
 				assertTrue(types.length == 0, "Load has no parameters!");
 
 			}
