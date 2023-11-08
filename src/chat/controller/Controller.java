@@ -17,6 +17,8 @@ public class Controller
 	
 	public void start()
 	{
+		load();
+		
 		String response = view.askQuestion("What is your name?");
 		chatbot.setUsername(response);
 		
