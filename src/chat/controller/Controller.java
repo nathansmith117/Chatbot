@@ -60,7 +60,16 @@ public class Controller
 	
 	public void load()
 	{
+		ArrayList<String> fileInput = IOController.loadTextToListFromFile("User Input.txt", this);
+		chatbot.setUserInput(fileInput);
 		
+		fileInput = IOController.loadTextToListFromFile("Chatbot responses.txt", this);
+		chatbot.setChatbotResponses(fileInput);
+		
+		if (!fileInput.get(0).equals("No text loaded"))
+		{
+			view.displayMessage("Previous chats loaded!");
+		}
 	}
 	
 	public void handleError(Exception error)

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class IOController
 {
@@ -32,5 +34,34 @@ public class IOController
 		{
 			app.handleError(error);
 		}
+	}
+	
+	public static ArrayList<String> loadTextToListFromFile(String path, Controller app)
+	{
+		ArrayList<String> texts = new ArrayList<String>();
+		
+		String contents = "";
+		
+		File source = new File(path);
+		
+		try (Scanner textScanner = new Scanner(source))
+		{
+			while (textScanner.hasNextLine())
+			{
+				String line = textScanner.nextLine();
+				
+				if (line.trim().length() > 0)
+				{
+					texts.add(line);
+				}
+			}
+		}
+		catch (FileNotFoundException error)
+		{
+			app.handleError(error);
+			texts.add("No text loaded");
+		}
+		
+		return texts;
 	}
 }
