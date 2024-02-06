@@ -59,6 +59,8 @@ public class ChatPanel extends JPanel
 		chatArea = new JTextArea();
 		chatField = new JTextField();
 		
+		spookyCheckerButton = new JButton("Spooky checker");
+		
 		saveButton = new JButton("save");
 		loadButton = new JButton("load");
 	}
@@ -79,11 +81,21 @@ public class ChatPanel extends JPanel
 	
 	private void setupListeners()
 	{
-		
+		spookyCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 0));
 	}
 	
 	private void setupLayout()
 	{
 		
+	}
+	
+	private void updateDisplay(String text, int choice)
+	{
+		String response = app.interactWithChatbot(text, choice);
+		
+		chatArea.append(text + "\n");
+		chatArea.append(response + "\n");
+		chatArea.setCaretPosition(chatArea.getDocument().getLength());
+		chatField.setText("");
 	}
 }
