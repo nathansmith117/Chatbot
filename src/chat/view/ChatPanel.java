@@ -123,7 +123,15 @@ public class ChatPanel extends JPanel
 	
 	private void setupLayout()
 	{
+		layout.putConstraint(SpringLayout.NORTH, chatPane, 25, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.EAST, chatPane, -50, SpringLayout.EAST, this);
+		layout.putConstraint(SpringLayout.SOUTH, chatPane, 350, SpringLayout.NORTH, this);
+		layout.putConstraint(SpringLayout.WEST, chatPane, 50, SpringLayout.WEST, this);
 		
+		layout.putConstraint(SpringLayout.NORTH, menuPanel, 25, SpringLayout.SOUTH, chatPane);
+		layout.putConstraint(SpringLayout.EAST, menuPanel, 0, SpringLayout.EAST, chatPane);
+		layout.putConstraint(SpringLayout.WEST, menuPanel, 0, SpringLayout.WEST, chatPane);
+		layout.putConstraint(SpringLayout.SOUTH, menuPanel, -25, SpringLayout.SOUTH, this);
 	}
 	
 	private void updateDisplay(String text, int choice)
