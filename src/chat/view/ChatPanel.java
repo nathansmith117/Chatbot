@@ -46,10 +46,6 @@ public class ChatPanel extends JPanel
 		super();
 		this.app  = app;
 		
-		setupPanel();
-		setupListeners();
-		setupLayout();
-		
 		layout = new SpringLayout();
 		
 		menuPanel = new JPanel(new GridLayout(0, 1));
@@ -72,6 +68,10 @@ public class ChatPanel extends JPanel
 		
 		saveButton = new JButton("save");
 		loadButton = new JButton("load");
+		
+		setupPanel();
+		setupListeners();
+		setupLayout();
 	}
 	
 	private void setupPanel()
