@@ -44,7 +44,7 @@ public class Controller
 	
 	public String interactWithChatbot(String input, int choice)
 	{
-		String response = "";
+		String response = chatbot.processText(input, choice);
 		
 		return response;
 	}
