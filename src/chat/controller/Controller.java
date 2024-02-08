@@ -3,16 +3,19 @@ package chat.controller;
 import chat.model.Chatbot;
 import chat.view.Popup;
 import java.util.ArrayList;
+import chat.view.ChatFrame;
 
 public class Controller
 {
 	private Chatbot chatbot;
 	private Popup view;
+	private ChatFrame window;
 	
 	public Controller()
 	{
 		this.chatbot = new Chatbot("ur mom");
 		this.view = new Popup();
+		this.window = new ChatFrame(this);
 	}
 	
 	public void start()
