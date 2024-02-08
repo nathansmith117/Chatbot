@@ -74,6 +74,13 @@ public class Controller
 		}
 	}
 	
+	public String loadText()
+	{
+		String text = "";
+		
+		return text;
+	}
+	
 	public void handleError(Exception error)
 	{
 		view.displayMessage(error.getMessage());

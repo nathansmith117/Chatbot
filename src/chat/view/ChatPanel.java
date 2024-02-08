@@ -60,6 +60,15 @@ public class ChatPanel extends JPanel
 		chatField = new JTextField();
 		
 		spookyCheckerButton = new JButton("Spooky checker");
+		timeDateCheckerButton = new JButton("Time date checker");
+		isValidHTMLCheckerButton = new JButton("HTML checker");
+		translateToPigLatinButton = new JButton("Translate to pig latin");
+		findSmallestWordButton = new JButton("Find smallest word");
+		reversePronounDirectionButton = new JButton("Reverse pronoun direction");
+		tellInsultingJokeButton = new JButton("Tell insulting joke");
+		talkToKarlMarxButton = new JButton("Talk to Karl Marx");
+		computerScienceResponseButton = new JButton("Computer science stuff");
+		holidayResponseButton = new JButton("Hoiday stuff");
 		
 		saveButton = new JButton("save");
 		loadButton = new JButton("load");
@@ -70,6 +79,12 @@ public class ChatPanel extends JPanel
 		setLayout(layout);
 		setBackground(Color.DARK_GRAY);
 		
+		chatPane.setViewportView(chatArea);
+		chatPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		chatPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		chatArea.setEnabled(false);
+		
+		this.add(chatPane);
 		this.add(menuPanel);
 		
 		menuPanel.add(chatField);
@@ -77,11 +92,33 @@ public class ChatPanel extends JPanel
 		
 		buttonPanel.add(saveButton);
 		buttonPanel.add(loadButton);
+		buttonPanel.add(spookyCheckerButton);
+		buttonPanel.add(timeDateCheckerButton);
+		buttonPanel.add(isValidHTMLCheckerButton);
+		buttonPanel.add(translateToPigLatinButton);
+		buttonPanel.add(findSmallestWordButton);
+		buttonPanel.add(reversePronounDirectionButton);
+		buttonPanel.add(tellInsultingJokeButton);
+		buttonPanel.add(talkToKarlMarxButton);
+		buttonPanel.add(computerScienceResponseButton);
+		buttonPanel.add(holidayResponseButton);
 	}
 	
 	private void setupListeners()
 	{
 		spookyCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 0));
+		timeDateCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 1));
+		isValidHTMLCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 2));
+		translateToPigLatinButton.addActionListener(click -> updateDisplay(chatField.getText(), 3));
+		findSmallestWordButton.addActionListener(click -> updateDisplay(chatField.getText(), 4));
+		reversePronounDirectionButton.addActionListener(click -> updateDisplay(chatField.getText(), 5));
+		tellInsultingJokeButton.addActionListener(click -> updateDisplay(chatField.getText(), 6));
+		talkToKarlMarxButton.addActionListener(click -> updateDisplay(chatField.getText(), 7));
+		computerScienceResponseButton.addActionListener(click -> updateDisplay(chatField.getText(), 8));
+		holidayResponseButton.addActionListener(click -> updateDisplay(chatField.getText(), 9));
+		
+		saveButton.addActionListener(click -> app.save());
+		loadButton.addActionListener(click -> loadText());
 	}
 	
 	private void setupLayout()
@@ -97,5 +134,11 @@ public class ChatPanel extends JPanel
 		chatArea.append(response + "\n");
 		chatArea.setCaretPosition(chatArea.getDocument().getLength());
 		chatField.setText("");
+	}
+	
+	private void loadText()
+	{
+		String text = app.loadText();
+		chatArea.setText(text);
 	}
 }
