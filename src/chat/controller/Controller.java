@@ -13,9 +13,9 @@ public class Controller
 	
 	public Controller()
 	{
-		this.chatbot = new Chatbot("ur mom");
-		this.view = new Popup();
+		this.chatbot = new Chatbot("");
 		this.window = new ChatFrame(this);
+		this.view = new Popup(this.window);
 	}
 	
 	public void start()
