@@ -21,18 +21,18 @@ public class Controller
 	public void start()
 	{
 		load();
-		
 		String response = view.askQuestion("What is your name?");
 		chatbot.setUsername(response);
 		
-		while (!response.equals("quit"))
-		{
-			response = interactWithChatbot(response);
-			response = view.askQuestion(response);
-		}
-		
-		save();
-		quit();
+		// Used when the interface was entirely popups.
+//		while (!response.equals("quit"))
+//		{
+//			response = interactWithChatbot(response);
+//			response = view.askQuestion(response);
+//		}
+//		
+//		save();
+//		quit();
 	}
 	
 	private String interactWithChatbot(String input)
