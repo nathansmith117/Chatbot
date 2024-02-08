@@ -80,6 +80,14 @@ public class Controller
 	public String loadText()
 	{
 		String text = "";
+		ArrayList<String> userInput = IOController.loadTextToListFromFile("User Input.txt", this);
+		ArrayList<String> chatInput = IOController.loadTextToListFromFile("Chatbot responses.txt", this);
+		
+		for (int index = 0; index < userInput.size(); index++)
+		{
+			text += userInput.get(index) + "\n";
+			text += chatInput.get(index) + "\n";
+		}
 		
 		return text;
 	}

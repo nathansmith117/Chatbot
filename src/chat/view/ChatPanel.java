@@ -22,6 +22,7 @@ public class ChatPanel extends JPanel
 	private JButton timeDateCheckerButton;
 	private JButton isValidHTMLCheckerButton;
 	private JButton translateToPigLatinButton;
+	private JButton encouragingMessageButton;
 	private JButton findSmallestWordButton;
 	private JButton reversePronounDirectionButton;
 	private JButton tellInsultingJokeButton;
@@ -59,6 +60,7 @@ public class ChatPanel extends JPanel
 		timeDateCheckerButton = new JButton("Time date checker");
 		isValidHTMLCheckerButton = new JButton("HTML checker");
 		translateToPigLatinButton = new JButton("Translate to pig latin");
+		encouragingMessageButton = new JButton("Encouraging message");
 		findSmallestWordButton = new JButton("Find smallest word");
 		reversePronounDirectionButton = new JButton("Reverse pronoun direction");
 		tellInsultingJokeButton = new JButton("Tell insulting joke");
@@ -106,16 +108,17 @@ public class ChatPanel extends JPanel
 	
 	private void setupListeners()
 	{
-		spookyCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 0));
-		timeDateCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 1));
-		isValidHTMLCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 2));
-		translateToPigLatinButton.addActionListener(click -> updateDisplay(chatField.getText(), 3));
-		findSmallestWordButton.addActionListener(click -> updateDisplay(chatField.getText(), 4));
-		reversePronounDirectionButton.addActionListener(click -> updateDisplay(chatField.getText(), 5));
-		tellInsultingJokeButton.addActionListener(click -> updateDisplay(chatField.getText(), 6));
-		talkToKarlMarxButton.addActionListener(click -> updateDisplay(chatField.getText(), 7));
-		computerScienceResponseButton.addActionListener(click -> updateDisplay(chatField.getText(), 8));
-		holidayResponseButton.addActionListener(click -> updateDisplay(chatField.getText(), 9));
+		spookyCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 1));
+		timeDateCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 2));
+		isValidHTMLCheckerButton.addActionListener(click -> updateDisplay(chatField.getText(), 3));
+		translateToPigLatinButton.addActionListener(click -> updateDisplay(chatField.getText(), 4));
+		encouragingMessageButton.addActionListener(click -> updateDisplay(chatField.getText(), 5));
+		findSmallestWordButton.addActionListener(click -> updateDisplay(chatField.getText(), 6));
+		reversePronounDirectionButton.addActionListener(click -> updateDisplay(chatField.getText(), 7));
+		tellInsultingJokeButton.addActionListener(click -> updateDisplay(chatField.getText(), 8));
+		talkToKarlMarxButton.addActionListener(click -> updateDisplay(chatField.getText(), 9));
+		computerScienceResponseButton.addActionListener(click -> updateDisplay(chatField.getText(), 10));
+		holidayResponseButton.addActionListener(click -> updateDisplay(chatField.getText(), 11));
 		
 		saveButton.addActionListener(click -> app.save());
 		loadButton.addActionListener(click -> loadText());
