@@ -2,3 +2,5 @@ bin/
 *.DS_Store
 *.xcuserstate
 *.class
+Chatbot responses.txt
+User Input.txt
