@@ -25,7 +25,7 @@ class PopupTest
 	@BeforeEach
 	public void setUp() throws Exception
 	{
-		this.testedPopup = new Popup();
+		this.testedPopup = new Popup(null);
 	}
 
 	@AfterEach
@@ -56,13 +56,10 @@ class PopupTest
 			else if (method.getReturnType().getName().equals("void"))
 			{
 				voidCount++;
-				if (method.getParameterCount() == 1 && method.getParameters()[0].equals(String.class))
+				if (method.getParameterCount() == 1)
 				{
-					if (method.getParameterCount() == 1)
-					{
-						Type[] types = methods[0].getGenericParameterTypes();
-						assertTrue(types[0].getTypeName().equals("java.lang.String"), "The parameter type needs to be: String");
-					}
+					Type[] types = methods[0].getGenericParameterTypes();
+					assertTrue(types[0].getTypeName().equals("java.lang.String"), "The parameter type needs to be: String");
 				}
 				assertTrue(method.getName().equals("displayMessage"), "This method should be named displayMessage");
 			}

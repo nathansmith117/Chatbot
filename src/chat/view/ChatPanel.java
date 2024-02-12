@@ -71,9 +71,27 @@ public class ChatPanel extends JPanel
 		saveButton = new JButton("save");
 		loadButton = new JButton("load");
 		
+		loadImages();
 		setupPanel();
 		setupListeners();
 		setupLayout();
+	}
+	
+	private void loadImages()
+	{
+		ImageIcon icon;
+		
+		try
+		{
+			icon = new ImageIcon(getClass().getResource("/chat/view/images/save.png"));
+			saveButton.setIcon(icon);
+			icon = new ImageIcon(getClass().getResource("/chat/view/images/load.png"));
+			loadButton.setIcon(icon);
+		}
+		catch (NullPointerException error)
+		{
+			app.handleError(error);
+		}
 	}
 	
 	private void setupPanel()
