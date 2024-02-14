@@ -41,7 +41,7 @@ class RunnerTest
 	public void testMain()
 	{
 		Method[] runnerMethods = testedRunner.getClass().getDeclaredMethods();
-		assertTrue(runnerMethods.length == 1, "There should be three methods in your Runner class");
+		assertTrue(runnerMethods.length == 1, "There should be one method in your Runner class");
 		
 		int returnType = runnerMethods[0].getModifiers();
 		assertTrue(Modifier.isPublic(returnType), "The method must be public");

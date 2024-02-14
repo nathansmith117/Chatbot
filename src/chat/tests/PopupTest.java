@@ -4,6 +4,7 @@ package chat.tests;
  * Project imports
  */
 import chat.view.Popup;
+import chat.view.ChatFrame;
 
 /**
  * Reflection imports
@@ -35,6 +36,15 @@ class PopupTest
 	}
 
 	@Test
+	public void testConstructor()
+	{
+		Constructor [] constructors = testedPopup.getClass().getDeclaredConstructors();
+		assertTrue(constructors.length == 1, "You should have 1 explicit constructor");
+		assertTrue(constructors[0].getParameterCount() == 1, "The popup constructor takes 1 parameter");
+		assertTrue(constructors[0].getGenericParameterTypes()[0].getTypeName().equals("chat.view.ChatFrame"), "The parameter must be the ChatFrame");
+	}
+
+	@Test
 	public void testStructure()
 	{
 		Method [] methods = testedPopup.getClass().getDeclaredMethods();
@@ -56,10 +66,13 @@ class PopupTest
 			else if (method.getReturnType().getName().equals("void"))
 			{
 				voidCount++;
-				if (method.getParameterCount() == 1)
+				if (method.getParameterCount() == 1 && method.getParameters()[0].equals(String.class))
 				{
-					Type[] types = methods[0].getGenericParameterTypes();
-					assertTrue(types[0].getTypeName().equals("java.lang.String"), "The parameter type needs to be: String");
+					if (method.getParameterCount() == 1)
+					{
+						Type[] types = methods[0].getGenericParameterTypes();
+						assertTrue(types[0].getTypeName().equals("java.lang.String"), "The parameter type needs to be: String");
+					}
 				}
 				assertTrue(method.getName().equals("displayMessage"), "This method should be named displayMessage");
 			}

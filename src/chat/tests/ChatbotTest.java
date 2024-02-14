@@ -59,6 +59,8 @@ class ChatbotTest
 	@Test
 	public void testStructure()
 	{
+		int processCount = 0;
+
 		Method [] methods = testedBot.getClass().getDeclaredMethods();
 		assertTrue(methods.length >= 15, "You need at least 15 methods in your chatbot!");
 		String [] names = {"spookyChecker","spookyResponse","timeDateChecker","timeDateResponse","isValidHTMLChecker","isValidHTMLResponse","processText","encouragingMessage", "reversePronounDirection", "findSmallestWord", "translateToPigLatin"};
@@ -70,8 +72,27 @@ class ChatbotTest
 			{
 				requiredMethods.remove(index);
 			}
+
+			if (method.getName().equals("processText"))
+			{
+				processCount++;
+
+				int methodModifiers = method.getModifiers();
+				Type[] types = method.getGenericParameterTypes();
+				assertTrue(types[0].getTypeName().equals("java.lang.String"), "The parameter type needs to be: String");
+				int modifierType = method.getModifiers();
+				assertTrue(Modifier.isPublic(modifierType), "This method: " + method.getName() + " must be public!");
+				assertTrue(method.getReturnType().equals(String.class), "This method should return a String");
+
+				if (types.length == 2)
+				{
+					assertTrue(types[1].getTypeName().equals("int"), "The second parameter type needs to be: int");
+				}
+
+			}
 			
 		}
+		assertTrue(processCount == 2, "You need two processText methods");
 		assertTrue(requiredMethods.size() == 0, "You do not have all the required methods." + requiredMethods.size() + " is/are missing");
 		names = new String [] {"spookyChecker","spookyResponse","timeDateChecker","timeDateResponse","isValidHTMLChecker","isValidHTMLResponse","encouragingMessage", "reversePronounDirection", "findSmallestWord", "translateToPigLatin"};
 		requiredMethods = new ArrayList<String>( Arrays.asList(names));
@@ -80,8 +101,8 @@ class ChatbotTest
 			int index = requiredMethods.indexOf(method.getName());
 			if (index >= 0)
 			{
-				int returnType = method.getModifiers();
-				assertTrue(Modifier.isPrivate(returnType), "This method: " + method.getName() + " must be private!");
+				int modifierType = method.getModifiers();
+				assertTrue(Modifier.isPrivate(modifierType), "This method: " + method.getName() + " must be private!");
 			}
 			
 		}

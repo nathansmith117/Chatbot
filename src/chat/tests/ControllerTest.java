@@ -40,12 +40,14 @@ class ControllerTest
 	void testDataMembers()
 	{
 		Field [] fields = testedController.getClass().getDeclaredFields();
-		assertTrue(fields.length >= 2, "You need at least 2 data members in your Controller");
+		assertTrue(fields.length > 2, "You need at least 3 data members in your Controller");
 		boolean hasPopup = false;
 		boolean hasChatbot = false;
+		boolean hasFrame = false;
 
 		for (Field field : fields)
 		{
+			assertTrue(Modifier.isPrivate(field.getModifiers()), "All data members must be private!");
 
 			String name = field.getType().getSimpleName();
 			if (name.equals("Popup"))
@@ -55,9 +57,14 @@ class ControllerTest
 			else if (name.equals("Chatbot"))
 			{
 				hasChatbot = true;
-			}	
+			}
+			else if (name.equals("ChatFrame"))
+			{
+				hasFrame = true;
+			}
 		}
 		assertTrue(hasPopup, "You need a Popup as a data member");
+		assertTrue(hasFrame, "You need a ChatFrame as a data member");
 		assertTrue(hasChatbot, "You need a Chatbot as a data member");
 	}
 
@@ -73,6 +80,7 @@ class ControllerTest
 		boolean hasSave = false;
 		boolean hasLoad = false;
 		boolean hasQuit = false;
+		boolean hasLoadText = false;
 		
 		for (Method method : methods)
 		{
@@ -104,7 +112,7 @@ class ControllerTest
 			else if (method.getName().equals("quit"))
 			{
 				hasQuit = true;
-				assertTrue(types.length == 0, "Load has no parameters!");
+				assertTrue(types.length == 0, "quit has no parameters!");
 
 			}
 			else if (method.getName().equals("interactWithChatbot"))
@@ -112,6 +120,23 @@ class ControllerTest
 				hasInteract = true;
 				assertTrue(types[0].getTypeName().equals("java.lang.String"), "The first parameter type needs to be: String");
 				interactCount++;
+
+				int methodModifiers = method.getModifiers();
+				if (types.length == 1)
+				{
+					assertTrue(Modifier.isPrivate(methodModifiers), "The 1 parameter version must be private");
+				}
+				else if (types.length == 2)
+				{
+					assertTrue(Modifier.isPublic(methodModifiers), "The 2 parameter version must be public");
+					assertTrue(types[1].getTypeName().equals("int"), "The second parameter type needs to be: int");
+				}
+			}
+			else if (method.getName().equals("loadText"))
+			{
+				hasLoadText = true;
+				assertTrue(method.getReturnType().equals(String.class), "This method should return a String");
+
 			}
 		}
 
@@ -121,6 +146,7 @@ class ControllerTest
 		assertTrue(hasStart, "You need a method named start");
 		assertTrue(hasSave, "You need a method named save");
 		assertTrue(hasLoad, "You need a method named load");
+		assertTrue(hasLoadText, "You need a method named loadText");
 		assertTrue(hasQuit, "You need a method named quit");
 	}
 

@@ -138,8 +138,15 @@ public class ChatPanel extends JPanel
 		computerScienceResponseButton.addActionListener(click -> updateDisplay(chatField.getText(), 10));
 		holidayResponseButton.addActionListener(click -> updateDisplay(chatField.getText(), 11));
 		
+		chatField.addActionListener(event -> chatFieldAction());
+		
 		saveButton.addActionListener(click -> app.save());
 		loadButton.addActionListener(click -> loadText());
+	}
+	
+	private void chatFieldAction()
+	{
+		
 	}
 	
 	private void setupLayout()
