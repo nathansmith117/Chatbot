@@ -1,0 +1,124 @@
+{
+  "tests": [
+    {
+      "name": "Runner test",
+      "setup": "",
+      "run": "gradle test --tests RunnerTest.testMain",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "IOController methods",
+      "setup": "",
+      "run": "gradle test --tests IOControllerTest.testMethods",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "Chatbot Structure",
+      "setup": "",
+      "run": "gradle test --tests ChatbotTest.testStructure",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 20
+    },
+    {
+      "name": "Chatbot Constructor",
+      "setup": "",
+      "run": "gradle test --tests ChatbotTest.testConstructor",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 5
+    },
+    {
+        "name": "Chatbot toString",
+        "setup": "",
+        "run": "gradle test --tests ChatbotTest.testToString",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 5
+    },
+    {
+      "name": "Controller Data members",
+      "setup": "",
+      "run": "gradle test --tests ControllerTest.testDataMembers",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "Controller Methods",
+      "setup": "",
+      "run": "gradle test --tests ControllerTest.testMethods",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 55
+    },
+    {
+      "name": "Popup Constructor Test",
+      "setup": "",
+      "run": "gradle test --tests PopupTest.testConstructor",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "Popup Methods Test",
+      "setup": "",
+      "run": "gradle test --tests PopupTest.testStructure",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "ChatFrame Test",
+      "setup": "",
+      "run": "gradle test --tests FrameTest.testChatFrame",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "ChatPanel structure",
+      "setup": "",
+      "run": "gradle test --tests PanelTest.testStructure",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "ChatPanel methods",
+      "setup": "",
+      "run": "gradle test --tests PanelTest.testRequiredMethods",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": 25
+    }
+  ]
+}
