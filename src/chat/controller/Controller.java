@@ -13,26 +13,26 @@ public class Controller
 	
 	public Controller()
 	{
-		this.chatbot = new Chatbot("ur mom");
-		this.view = new Popup();
+		this.chatbot = new Chatbot("");
 		this.window = new ChatFrame(this);
+		this.view = new Popup(this.window);
 	}
 	
 	public void start()
 	{
 		load();
-		
 		String response = view.askQuestion("What is your name?");
 		chatbot.setUsername(response);
 		
-		while (!response.equals("quit"))
-		{
-			response = interactWithChatbot(response);
-			response = view.askQuestion(response);
-		}
-		
-		save();
-		quit();
+		// Used when the interface was entirely popups.
+//		while (!response.equals("quit"))
+//		{
+//			response = interactWithChatbot(response);
+//			response = view.askQuestion(response);
+//		}
+//		
+//		save();
+//		quit();
 	}
 	
 	private String interactWithChatbot(String input)
@@ -44,7 +44,7 @@ public class Controller
 	
 	public String interactWithChatbot(String input, int choice)
 	{
-		String response = "";
+		String response = chatbot.processText(input, choice);
 		
 		return response;
 	}
@@ -80,6 +80,14 @@ public class Controller
 	public String loadText()
 	{
 		String text = "";
+		ArrayList<String> userInput = IOController.loadTextToListFromFile("User Input.txt", this);
+		ArrayList<String> chatInput = IOController.loadTextToListFromFile("Chatbot responses.txt", this);
+		
+		for (int index = 0; index < userInput.size(); index++)
+		{
+			text += userInput.get(index) + "\n";
+			text += chatInput.get(index) + "\n";
+		}
 		
 		return text;
 	}

@@ -23,25 +23,24 @@ public class Chatbot
 		this.username = username;
 	}
 	
-	// I need to write this lmao
 	public String processText(String input)
 	{
-		userInput.add(input);
-		
 		int randomChatType = (int)(generateNumberFromString(input) * 11);
-		//randomChatType = 7;
-		
+		String output = processText(input, randomChatType);
+		return output;
+	}
+
+	public String processText(String input, int choice)
+	{
+		userInput.add(input);
 		String output = "";
 		
-		// Testing the chat type.
-		//output += randomChatType + "\n";
-		
-		if (randomChatType == 0)
+		if (choice == 0)
 		{
 			output += "you said " + input;
 			output += "\n";
 		}
-		else if (randomChatType == 1)
+		else if (choice == 1)
 		{
 			if (spookyChecker(input))
 			{
@@ -54,7 +53,7 @@ public class Chatbot
 				output += "\n";
 			}
 		}
-		else if (randomChatType == 2)
+		else if (choice == 2)
 		{
 			if (timeDateChecker(input))
 			{
@@ -66,7 +65,7 @@ public class Chatbot
 				output += "\n";
 			}
 		}
-		else if (randomChatType == 3)
+		else if (choice == 3)
 		{
 			if (isValidHTMLChecker(input))
 			{
@@ -78,38 +77,38 @@ public class Chatbot
 				output += "\n";
 			}
 		}
-		else if (randomChatType == 4)
+		else if (choice == 4)
 		{
 			output += "pig latin of input " + input;
 			output += "\n";
 			output += translateToPigLatin(input);
 			output += "\n";
 		}
-		else if (randomChatType == 5)
+		else if (choice == 5)
 		{
 			output += "yo " + username + "\n" + encouragingMessage() + "\n";
 		}
-		else if (randomChatType == 6)
+		else if (choice == 6)
 		{
 			output += input + "\n";
 			output += findSmallestWord(input);
 			output += "\n";
 		}
-		else if (randomChatType == 7)
+		else if (choice == 7)
 		{
 			output += input + "\n";
 			output += reversePronounDirection(input);
 			output += "\n";
 		}
-		else if (randomChatType == 8)
+		else if (choice == 8)
 		{
 			output += tellInsultingJoke() + "\n";
 		}
-		else if (randomChatType == 9)
+		else if (choice == 9)
 		{
 			output += talkToKarlMarx(input) + "\n";
 		}
-		else if (randomChatType == 10)
+		else if (choice == 10)
 		{
 			if (computerScienceChecker(input))
 			{
@@ -120,7 +119,7 @@ public class Chatbot
 				output += "No computer science found ):\n";
 			}
 		}
-		else if (randomChatType == 11)
+		else if (choice == 11)
 		{
 			if (holidayChecker(input))
 			{
